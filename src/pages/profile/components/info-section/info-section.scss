@@ -1,0 +1,108 @@
+.info-section {
+  border: 1px solid #ebeeef;
+  border-radius: 4px;
+  padding: 16px 19px 24px 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.first-section-info,
+.second-section-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.general-title {
+  color: #003367;
+  font-size: 20px;
+  line-height: 32px;
+  font-family: "Roboto";
+  font-weight: 500;
+  margin: 0;
+}
+
+.row-general {
+  display: flex;
+  flex-direction: row;
+  margin: 24.5px 0 0 0;
+}
+
+.name-input,
+.contact-input,
+.absences-input,
+.date-picker,
+.account-input {
+  font-size: 14px;
+  padding: 0;
+
+  label {
+    color: #95a2a7; 
+  }
+
+  div {
+    border-bottom: 1px solid #ebeeef;
+    color: #000000;
+  }
+
+  div::before {
+    border-bottom: 1px solid #ebeeef;
+  }
+}
+
+.name-input,
+.contact-input,
+.absences-input,
+.date-picker {
+  height: 52px;
+  margin-right: 20px !important;
+}
+
+.account-input {
+  height: 52px;
+  margin-right: 19px !important;
+}
+
+.name-input,
+.date-picker {
+  width: 223px;
+}
+
+.contact-input,
+.account-input {
+  width: 340px;
+}
+
+.account-input {
+  margin-bottom: 19px !important;
+}
+
+.absences-input {
+  width: 108px;
+}
+
+.account-title {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 32px;
+  color: #003367;
+  margin-bottom: 17px;
+}
+
+.divider {
+  height: 241px !important;
+  width: 1px;
+  color: #ebeeef;
+  margin-right: 20px !important;
+}
+
+.slack-icon {
+  opacity: 0.36;
+  width: 23px;
+  height: 23px;
+}
+
+.github-icon {
+  color: #95a2a7
+}

@@ -1,0 +1,27 @@
+.drawer-wrapper {
+  max-width: 64px;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  z-index: 5;
+  background-color: #003367;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-icon {
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 38px;
+}
+
+.list-icon {
+  color: #DADADA;
+  margin-bottom: 25px;
+}
+
+.list-icon-selected {
+  color: #ffffff;
+  margin-bottom: 25px;
+}
