@@ -1,10 +1,13 @@
 import {
-  GENERATE_PASSWORD,
   GET_GLOBAL_PARAMETERS,
   GET_LABELS,
+  GENERATE_PASSWORD,
   SUCCESS_GENERATE_PASSWORD,
   SUCCESS_GET_GLOBAL_PARAMETERS,
   SUCCESS_GET_LABELS,
+  LOGIN_WITH_CODE,
+  SUCCESS_LOGIN_WITH_CODE,
+  FAILED_LOGIN_WITH_CODE,
 } from "./actionTypes";
 import { Action } from "../../interfaces";
 
@@ -26,13 +29,28 @@ const successGetLabelss = (payload: unknown): Action => ({
   payload,
 });
 
-const generatePassword = (payload: { email: string, languageId: string }): Action => ({
+const generatePassword = (payload: unknown): Action => ({
   type: GENERATE_PASSWORD,
   payload,
-})
+});
 
 const successGeneratePassword = (payload: unknown): Action => ({
   type: SUCCESS_GENERATE_PASSWORD,
+  payload,
+});
+
+const loginWithCode = (payload: unknown): Action => ({
+  type: LOGIN_WITH_CODE,
+  payload,
+});
+
+const successLoginWithCode = (payload: unknown): Action => ({
+  type: SUCCESS_LOGIN_WITH_CODE,
+  payload,
+})
+
+const failedLoginWithCode = (payload: unknown): Action => ({
+  type: FAILED_LOGIN_WITH_CODE,
   payload
 })
 
@@ -42,5 +60,8 @@ export {
   getLabels,
   successGetLabelss,
   generatePassword,
-  successGeneratePassword
+  successGeneratePassword,
+  loginWithCode,
+  successLoginWithCode,
+  failedLoginWithCode,
 };

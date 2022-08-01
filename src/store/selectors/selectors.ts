@@ -7,5 +7,17 @@ export const selectLabels = (state: RootState) => {
 }
 
 export const selectLanguageId = (state: RootState) => {
-  return state.global.languageID
+  return state.global.languageId;
+}
+
+export const selectUserEmail = (state: RootState) => {
+  return state.user?.email;
+}
+
+export const selectIsAuthenticated = (state: RootState) => {
+  return !!state.user?.auth;
+}
+
+export const selectLoginError = (state: RootState) => {
+  return state.user.loginError;
 }

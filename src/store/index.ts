@@ -5,10 +5,12 @@ import rootReducer from "./reducers";
 import { rootSaga } from "./sagas";
 import labels from "./reducers/labels";
 import global from './reducers/global';
+import user from "./reducers/user";
 
 export const reducer = combineReducers({
   global: global,
   labels: labels,
+  user: user,
 });
 
 const sagaMiddleware = createSagaMiddleware();

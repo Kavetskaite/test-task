@@ -2,14 +2,42 @@ import { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./code-step.scss";
 import { getLabelTitle } from "../../../../helpers";
-import { useSelector } from "react-redux";
-import { selectLabels } from "../../../../store/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectIsAuthenticated,
+  selectLabels,
+  selectLanguageId,
+  selectLoginError,
+  selectUserEmail,
+} from "../../../../store/selectors";
+import { Alert } from "@mui/material";
+import { loginWithCode } from "../../../../store/actions";
+import { useNavigate } from "react-router-dom";
 
 export const CodeStep = () => {
+  const labels = useSelector(selectLabels);
+  const languageID = useSelector(selectLanguageId);
+  const email = useSelector(selectUserEmail);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const loginError = useSelector(selectLoginError);
+
   const [inputs, setInputs] = useState<Array<HTMLInputElement>>([]);
   const [form, setForm] = useState<any>(null);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  const labels = useSelector(selectLabels);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated && !loginError) {
+      navigate("/dashboard");
+    }
+
+    if (loginError) {
+      setIsError(true);
+    }
+  }, [isAuthenticated, loginError]);
 
   useEffect(() => {
     const form = document.querySelector('[name="verify"]');
@@ -19,14 +47,6 @@ export const CodeStep = () => {
     setInputs(Array.from(inputs || []));
     setForm(form);
   }, []);
-
-  useEffect(() => {
-    if (inputs && form) {
-      inputs[0].addEventListener("paste", handlePaste);
-      form?.addEventListener("input", handleInput);
-      form?.addEventListener("keydown", handleDelete);
-    }
-  }, [form, inputs]);
 
   // check for data that was inputed and if there is a next input, focus it
   const handleInput = (e: any) => {
@@ -57,6 +77,14 @@ export const CodeStep = () => {
     }
   };
 
+  useEffect(() => {
+    if (inputs.length && form) {
+      inputs[0].addEventListener("paste", handlePaste);
+      form?.addEventListener("keyup", handleInput);
+      form?.addEventListener("keydown", handleDelete);
+    }
+  }, [form, inputs]);
+
   // loop over each input, and populate with the index of that string
   const handlePaste = (e: any) => {
     const paste = e.clipboardData.getData("text").replaceAll(/\D/g, "");
@@ -80,11 +108,34 @@ export const CodeStep = () => {
     });
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    let code = "";
+    inputs?.forEach((input) => {
+      code += input.value;
+    });
+
+    if (code.length < 6) {
+      setIsError(true);
+      return;
+    }
+
+    setIsError(false);
+
+    dispatch(loginWithCode({ email, code, languageID }));
+  };
+
   return (
     <>
+      {isError && (
+        <Alert severity="error" className="error-alert">
+          {getLabelTitle(labels, "invalid-login")}
+        </Alert>
+      )}
       <p className="login-text">{getLabelTitle(labels, "code-title")}</p>
-      <form name="verify">
-        <div className="inputs code-form">
+      <form name="verify" onSubmit={handleSubmit}>
+        <div className="inputs code-form" id="inputs-block">
           <input type="text" id="1" maxLength={1} className="code-input" />
           <input type="text" id="2" maxLength={1} className="code-input" />
           <input type="text" id="3" maxLength={1} className="code-input" />
@@ -94,8 +145,11 @@ export const CodeStep = () => {
 
           <ClearIcon className="clear-icon" onClick={clearInputs} />
         </div>
+        <button className="submit-btn">
+          {getLabelTitle(labels, "submit")}
+        </button>
       </form>
-      <button className="submit-btn">{getLabelTitle(labels, "submit")}</button>
+
       <p className="sub-text">
         If you do not receive the confirmation message within a few minutes,
         please check your Spam or Bulk E-Mail folder

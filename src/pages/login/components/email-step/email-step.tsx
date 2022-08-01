@@ -11,14 +11,14 @@ export const EmailStep = () => {
   const dispatch = useDispatch();
 
   const labels = useSelector(selectLabels);
-  const languageId = useSelector(selectLanguageId);
+  const languageID = useSelector(selectLanguageId);
 
   const handleChange = (e: any) => {
     setEmail(e.target.value);
   };
 
   const handleSubmit = () => {
-    dispatch(generatePassword({ email, languageId }));
+    dispatch(generatePassword({ email, languageID }));
   };
 
   return (

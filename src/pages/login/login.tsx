@@ -1,14 +1,14 @@
 import { Alert } from "@mui/material";
 import loginImage from "../../assets/login-image.png";
 import { EmailStep, CodeStep } from "./components";
-import { selectLabels } from "../../store/selectors";
+import { selectLabels, selectUserEmail } from "../../store/selectors";
 import "./login.scss";
 import { useSelector } from "react-redux";
 import { getLabelTitle } from "../../helpers";
-import { useState } from "react";
 
 export const Login = () => {
   const labels = useSelector(selectLabels);
+  const userEmail = useSelector(selectUserEmail);
 
   return (
     <>
@@ -22,9 +22,7 @@ export const Login = () => {
         <div className="login-section">
           <div className="login-block">
             <h3 className="login-title">{getLabelTitle(labels, "login")}</h3>
-            {/* <Alert severity="error" className="error-alert">{getLabelTitle(labels, "invalid-login")}</Alert> */}
-            <EmailStep />
-            {/* <CodeStep /> */}
+            {userEmail ? <CodeStep /> : <EmailStep />}
           </div>
         </div>
       </div>

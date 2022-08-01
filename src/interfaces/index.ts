@@ -28,3 +28,9 @@ export interface Label {
   id: string,
   isActive: boolean
 }
+
+export interface UserState {
+  email: string;
+  auth: string;
+  loginError: boolean;
+}

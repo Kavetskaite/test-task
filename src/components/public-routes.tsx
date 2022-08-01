@@ -1,13 +1,11 @@
-import React, { FC } from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
-import { ROUTES } from '../configs/routesConfig'
+import React, { FC } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+import { ROUTES } from "../configs/routesConfig";
+import { selectIsAuthenticated } from "../store/selectors";
 
 export const PublicRoutes: FC = () => {
- // TODO
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  return !true ? (
-    <Navigate to={ROUTES.DASHBOARD} />
-  ) : (
-    <Outlet />
-  )
-}
+  return isAuthenticated ? <Navigate to={ROUTES.DASHBOARD} /> : <Outlet />;
+};
