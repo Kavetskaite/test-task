@@ -2,7 +2,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import { useForm } from "react-hook-form";
 import { Drawer } from "../../components";
-import { InfoSection } from "./components";
+import { InfoSection, WorkLogsSection } from "./components";
 import './profile.scss';
 
 export const Profile = () => {
@@ -14,7 +14,7 @@ export const Profile = () => {
         list={[
           {
             icon: <DashboardIcon />,
-            link: "/",
+            link: "/dashboard",
           },
           {
             icon: <PermContactCalendarIcon />,
@@ -25,6 +25,7 @@ export const Profile = () => {
       <div className="profile">
         <h1 className="profile-title">My Profile</h1>
         <InfoSection control={control} />
+        <WorkLogsSection control={control} />
       </div>
     </>
   );

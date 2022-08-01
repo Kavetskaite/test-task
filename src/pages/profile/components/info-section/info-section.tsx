@@ -1,9 +1,10 @@
-import { Divider, InputAdornment, TextField } from "@mui/material";
-import GitHubIcon from '@mui/icons-material/GitHub';
+import { Checkbox, Divider, FormControlLabel, InputAdornment, TextField } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { FC } from "react";
 import { Control, FieldValues } from "react-hook-form";
-import slackIcon from '../../../../assets/slack-icon.png';
+import slackIcon from "../../../../assets/slack-icon.png";
 import "./info-section.scss";
+import { DatePickerField } from "../../../../components";
 
 interface InfoSectionProps {
   control: Control<FieldValues, any>;
@@ -26,6 +27,13 @@ export const InfoSection: FC<InfoSectionProps> = () => {
             label="Last name"
             variant="standard"
             autoComplete="off"
+          />
+          <DatePickerField
+            className="date-input"
+            name="birth"
+            label="Date of birth"
+            size="small"
+            // onChange={debounce(onChange, 300)}
           />
         </div>
         <div className="row-general">
@@ -50,11 +58,26 @@ export const InfoSection: FC<InfoSectionProps> = () => {
           />
         </div>
         <div className="row-general">
+          <DatePickerField
+            className="date-input"
+            name="date"
+            label="Start Date"
+            size="small"
+            // onChange={debounce(onChange, 300)}
+          />
           <TextField
             className="absences-input"
             label="Absences"
             variant="standard"
             autoComplete="off"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox 
+              // onChange={handleChange} 
+              name="team" />
+            }
+            label="Core team member"
           />
         </div>
       </div>
@@ -70,7 +93,7 @@ export const InfoSection: FC<InfoSectionProps> = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <img src={slackIcon} className="slack-icon"/>
+                <img src={slackIcon} className="slack-icon" />
               </InputAdornment>
             ),
           }}
@@ -84,7 +107,7 @@ export const InfoSection: FC<InfoSectionProps> = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <GitHubIcon className="github-icon"/>
+                <GitHubIcon className="github-icon" />
               </InputAdornment>
             ),
           }}

@@ -14,7 +14,7 @@ export const Home = () => {
         list={[
           {
             icon: <DashboardIcon />,
-            link: "/",
+            link: "/dashboard",
           },
           {
             icon: <PermContactCalendarIcon />,
