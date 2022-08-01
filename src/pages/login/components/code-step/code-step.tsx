@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./code-step.scss";
+import { getLabelTitle } from "../../../../helpers";
+import { useSelector } from "react-redux";
+import { selectLabels } from "../../../../store/selectors";
 
 export const CodeStep = () => {
   const [inputs, setInputs] = useState<Array<HTMLInputElement>>([]);
   const [form, setForm] = useState<any>(null);
+
+  const labels = useSelector(selectLabels);
 
   useEffect(() => {
     const form = document.querySelector('[name="verify"]');
@@ -77,10 +82,7 @@ export const CodeStep = () => {
 
   return (
     <>
-      <p className="login-text">
-        To finalize your verification, please enter the code that has been sent
-        to your email address / SMS
-      </p>
+      <p className="login-text">{getLabelTitle(labels, "code-title")}</p>
       <form name="verify">
         <div className="inputs code-form">
           <input type="text" id="1" maxLength={1} className="code-input" />
@@ -93,7 +95,7 @@ export const CodeStep = () => {
           <ClearIcon className="clear-icon" onClick={clearInputs} />
         </div>
       </form>
-      <button className="submit-btn">SUBMIT</button>
+      <button className="submit-btn">{getLabelTitle(labels, "submit")}</button>
       <p className="sub-text">
         If you do not receive the confirmation message within a few minutes,
         please check your Spam or Bulk E-Mail folder

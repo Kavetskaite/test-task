@@ -5,7 +5,7 @@ import { ROUTES } from '../configs/routesConfig'
 export const PublicRoutes: FC = () => {
  // TODO
 
-  return true ? (
+  return !true ? (
     <Navigate to={ROUTES.DASHBOARD} />
   ) : (
     <Outlet />

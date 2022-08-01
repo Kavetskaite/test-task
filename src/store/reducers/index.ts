@@ -1,6 +1,10 @@
+import { combineReducers } from 'redux';
+import global from './global';
+import user from './user';
+import labels from './labels';
 
-const initialState = {};
-
-export default function rootReducer(state = initialState) {
-  return {}
-}
+export default combineReducers({
+  labels,
+  global,
+  user,
+});

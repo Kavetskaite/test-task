@@ -4,9 +4,14 @@ import { Drawer } from "../../components";
 import homeImage from "../../assets/home-image.png";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
+import { getLabelTitle } from "../../helpers";
+import { useSelector } from "react-redux";
+import { selectLabels } from "../../store/selectors";
 
 export const Home = () => {
   const navigate = useNavigate();
+
+  const labels = useSelector(selectLabels);
 
   return (
     <>
@@ -24,16 +29,16 @@ export const Home = () => {
       />
       <div className="home">
         <img src={homeImage} className="home-image" />
-        <h1 className="home-title">Coming soon</h1>
+        <h1 className="home-title">{getLabelTitle(labels, "coming-soon")}</h1>
         <button
           className="profile-btn"
           onClick={() => {
             navigate("/profile");
           }}
         >
-          Edit my profile and my worklog
+          {getLabelTitle(labels, "edit-profile-and-worklog")}
         </button>
-        <button className="logout-btn">Logout</button>
+        <button className="logout-btn">{getLabelTitle(labels, "logout")}</button>
       </div>
     </>
   );

@@ -1,10 +1,14 @@
 import { Alert } from "@mui/material";
 import loginImage from "../../assets/login-image.png";
 import { EmailStep, CodeStep } from "./components";
+import { selectLabels } from "../../store/selectors";
 import "./login.scss";
+import { useSelector } from "react-redux";
+import { getLabelTitle } from "../../helpers";
+import { useState } from "react";
 
 export const Login = () => {
-  
+  const labels = useSelector(selectLabels);
 
   return (
     <>
@@ -17,15 +21,15 @@ export const Login = () => {
         </div>
         <div className="login-section">
           <div className="login-block">
-            <h3 className="login-title">Login</h3>
-            {/* <Alert severity="error" className="error-alert">Please enter a valid code</Alert> */}
-            {/* <EmailStep /> */}
-            <CodeStep />
+            <h3 className="login-title">{getLabelTitle(labels, "login")}</h3>
+            {/* <Alert severity="error" className="error-alert">{getLabelTitle(labels, "invalid-login")}</Alert> */}
+            <EmailStep />
+            {/* <CodeStep /> */}
           </div>
         </div>
       </div>
       <footer>
-        <p className="footer-text">© 2022 Playground. All rights reserved.</p>
+        <p className="footer-text">{getLabelTitle(labels, "copyrights")}</p>
       </footer>
     </>
   );

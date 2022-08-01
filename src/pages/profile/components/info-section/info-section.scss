@@ -25,24 +25,27 @@
 .row-general {
   display: flex;
   flex-direction: row;
-  margin: 24.5px 0 0 0;
+  margin: 18px 0 0 0;
 }
 
 .name-input,
 .contact-input,
 .absences-input,
-.date-picker,
+.date-input,
 .account-input {
   font-size: 14px;
   padding: 0;
 
   label {
-    color: #95a2a7; 
+    color: #95a2a7;
+    font-size: 14px;
   }
 
   div {
+    border: none;
     border-bottom: 1px solid #ebeeef;
     color: #000000;
+    font-size: 14px;
   }
 
   div::before {
@@ -53,7 +56,7 @@
 .name-input,
 .contact-input,
 .absences-input,
-.date-picker {
+.date-input {
   height: 52px;
   margin-right: 20px !important;
 }
@@ -64,8 +67,18 @@
 }
 
 .name-input,
-.date-picker {
+.date-input {
   width: 223px;
+}
+
+.date-input {
+  div {
+    div {
+      button {
+        color: #95A2A7;
+      }
+    }
+  }
 }
 
 .contact-input,
@@ -79,6 +92,19 @@
 
 .absences-input {
   width: 108px;
+}
+
+.checkbox-component {
+  label {
+    span {
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    .checkbox.Mui-checked {
+      color: #003367;
+    }
+  }
 }
 
 .account-title {
@@ -104,5 +130,5 @@
 }
 
 .github-icon {
-  color: #95a2a7
+  color: #95a2a7;
 }
