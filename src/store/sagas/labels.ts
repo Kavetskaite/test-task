@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 import { GET_LABELS } from '../actions/actionTypes';
 import { ResponseGenerator } from '../../interfaces'
-import { successGetLabelss } from '../actions';
+import { successGetLabels } from '../actions';
 
 export function* getLabels() {
   try {
@@ -10,7 +10,7 @@ export function* getLabels() {
       `${process.env.REACT_APP_SERVER_URL}/api/Labels/GetAll`
     );
 
-    yield put(successGetLabelss(res.data))
+    yield put(successGetLabels(res.data))
   } catch (err) {
 
   }
